@@ -27,18 +27,27 @@
 
     .buttons {
       margin-top: 20px;
+      position: relative;
+      width: 300px;
+      height: 100px;
     }
 
     button {
       background-color: white;
       color: black;
       padding: 10px 20px;
-      margin: 10px;
       border: none;
       border-radius: 10px;
       font-size: 18px;
       cursor: pointer;
+      position: absolute;
       transition: all 0.3s ease;
+    }
+
+    #hayir {
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
     }
 
     #overlay {
@@ -77,40 +86,38 @@
 </head>
 <body>
 
-  <!-- Tatlı Kedi Fotoğrafı -->
   <img src="kedi.png.jfif" alt="Tatlı Kedi">
   <h1>Bana küstün mü?</h1>
 
-  <!-- Butonlar -->
   <div class="buttons">
     <button id="evet">Evet</button>
     <button id="hayir">Hayır</button>
   </div>
 
-  <!-- Müzik Dosyası -->
+  <!-- Müzik -->
   <audio id="bgMusic" src="muzik.mp3.mp3" hidden></audio>
 
-  <!-- Kararma ve Mesaj Ekranı -->
+  <!-- Ekran Kararma ve Yazı -->
   <div id="overlay">
     <img id="loveImage" src="seniseviyorum.jpg.jpg" alt="Seni Seviyorum">
     <div id="loveText">Seni seviyorum ❤️</div>
   </div>
 
-  <!-- JavaScript -->
   <script>
     const evetButton = document.getElementById('evet');
     const hayirButton = document.getElementById('hayir');
     const music = document.getElementById("bgMusic");
     const overlay = document.getElementById('overlay');
 
-    // Evet'e basılamaz hale getir
-    evetButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      alert("Buna basamazsın 😼");
+    // Evet butonu kaçsın
+    document.getElementById('evet').addEventListener('mouseenter', () => {
+      const x = Math.floor(Math.random() * 200);
+      const y = Math.floor(Math.random() * 50);
+      evetButton.style.left = `${x}px`;
+      evetButton.style.top = `${y}px`;
     });
 
-    // Hayır'a basınca müzik çalsın ve ekran geçişi olsun
+    // Hayır'a basınca ekran kararsın ve resim gelsin
     hayirButton.addEventListener('click', () => {
       music.play();
       overlay.classList.add('show');
