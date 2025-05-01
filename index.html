@@ -107,13 +107,12 @@
     });
 
     // "Hayır" butonuna basınca müzik başlar ve ekran kararır
-    hayirButton.addEventListener('click', () => {
-      music.play(); // Müziği başlat
-      overlay.classList.add('show');
-      setTimeout(() => {
-        overlay.classList.remove('show');
-      }, 5000); // 5 saniye sonra ekran tekrar normalleşir
-    });
+hayirButton.addEventListener('click', () => {
+  music.play();
+  overlay.classList.add('show');
+
+  // Artık bu ekran kalıcı, geri dönmeyecek
+  });
   </script>
 
 </body>
