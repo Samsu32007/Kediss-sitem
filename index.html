@@ -27,7 +27,6 @@
 
     .buttons {
       margin-top: 20px;
-      position: relative;
     }
 
     button {
@@ -39,7 +38,7 @@
       border-radius: 10px;
       font-size: 18px;
       cursor: pointer;
-      position: relative;
+      transition: all 0.3s ease;
     }
 
     #overlay {
@@ -78,41 +77,44 @@
 </head>
 <body>
 
+  <!-- Tatlı Kedi Fotoğrafı -->
   <img src="kedi.png.jfif" alt="Tatlı Kedi">
   <h1>Bana küstün mü?</h1>
 
+  <!-- Butonlar -->
   <div class="buttons">
     <button id="evet">Evet</button>
     <button id="hayir">Hayır</button>
   </div>
 
-  <!-- Arka Plan Müzik -->
+  <!-- Müzik Dosyası -->
   <audio id="bgMusic" src="muzik.mp3.mp3" hidden></audio>
 
+  <!-- Kararma ve Mesaj Ekranı -->
   <div id="overlay">
     <img id="loveImage" src="seniseviyorum.jpg.jpg" alt="Seni Seviyorum">
     <div id="loveText">Seni seviyorum ❤️</div>
   </div>
 
+  <!-- JavaScript -->
   <script>
     const evetButton = document.getElementById('evet');
     const hayirButton = document.getElementById('hayir');
     const music = document.getElementById("bgMusic");
     const overlay = document.getElementById('overlay');
 
-    // "Evet" butonuna basınca müzik durur
-    evetButton.addEventListener('click', () => {
-      music.pause();
-      music.currentTime = 0; // Müziği başa al
+    // Evet'e basılamaz hale getir
+    evetButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      alert("Buna basamazsın 😼");
     });
 
-    // "Hayır" butonuna basınca müzik başlar ve ekran kararır
-hayirButton.addEventListener('click', () => {
-  music.play();
-  overlay.classList.add('show');
-
-  // Artık bu ekran kalıcı, geri dönmeyecek
-  });
+    // Hayır'a basınca müzik çalsın ve ekran geçişi olsun
+    hayirButton.addEventListener('click', () => {
+      music.play();
+      overlay.classList.add('show');
+    });
   </script>
 
 </body>
