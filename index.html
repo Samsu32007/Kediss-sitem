@@ -17,7 +17,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-    }
+    <audio id="bgMusic" src="muzik.mp3"></audio>
+}
 
     img {
       width: 200px;
@@ -93,6 +94,16 @@
   </div>
 
   <script>
+    const music = document.getElementById("bgMusic");
+
+hayirButton.addEventListener("click", () => {
+  music.play(); // Müziği başlat
+  overlay.classList.add("show");
+  setTimeout(() => {
+    overlay.classList.remove("show");
+  }, 5000);
+});
+
     const evetButton = document.getElementById('evet');
     const hayirButton = document.getElementById('hayir');
     const overlay = document.getElementById('overlay');
